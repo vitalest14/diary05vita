@@ -1,6 +1,7 @@
 import os
 from os.path import join, dirname
 from dotenv import load_dotenv
+
 from flask import Flask, render_template, request, jsonify
 from pymongo import MongoClient
 from datetime import datetime
@@ -13,9 +14,9 @@ DB_NAME = os.environ.get("DB_NAME")
 
 client = MongoClient(MONGODB_URI) 
 
-db = client.dbsparta
+db = client[DB_NAME]
 
-app = Flask('/')
+app = Flask(__name__)
 
 @app.route('/')
 def home():
